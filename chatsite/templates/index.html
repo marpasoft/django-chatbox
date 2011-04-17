@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbox</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://{{ HOOKBOX_HOST }}:{{ HOOKBOX_PORT }}/static/hookbox.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var conn = hookbox.connect('http://{{ HOOKBOX_HOST }}:{{ HOOKBOX_PORT }}/');
+        conn.onOpen = function() { 
+          console.log("connection established!");
+        };
+        conn.onError = function(err) {
+          console.log("connection failed: " + err.msg);
+        };
+        conn.onSubscribed = function(channel_name, subscription) {
+          subscription.onPublish = function(frame) {
+            console.log(frame);
+          };
+        };
+        conn.subscribe('testing');
+    });
+    </script>
+  </body>
+</html>
