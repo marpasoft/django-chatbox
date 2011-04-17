@@ -1,16 +1,13 @@
 import os.path
 
 try:
-    from local_settings import DEBUG
+    from local_settings import DEBUG, ADMINS
 except ImportError:
     DEBUG = True
+    ADMINS = ()
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-)
 
 MANAGERS = ADMINS
 
@@ -74,7 +71,7 @@ ADMIN_MEDIA_PREFIX = STATIC_URL+'admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static')
+    os.path.join(PROJECT_ROOT, 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -93,6 +90,16 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.request",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.contrib.auth.context_processors.auth",
+    "django.contrib.messages.context_processors.messages",
+    "context_processors.hookbox",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -120,6 +127,12 @@ INSTALLED_APPS = (
     'chatbox',
 )
 
+try:
+    from local_settings import INSTALLED_APPS_EXTRA
+    INSTALLED_APPS += INSTALLED_APPS_EXTRA
+except ImportError:
+    pass
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
@@ -130,8 +143,12 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'mail_admins': {
-            'level': 'ERROR',
+            'level': 'DEBUG',
             'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
         }
     },
     'loggers': {
@@ -140,5 +157,14 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'chatbox.views': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        }
     }
 }
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
