@@ -103,6 +103,7 @@ button::-moz-focus-inner {
   margin-right: 212px;
   margin-bottom: 50px;
   margin-left: 20px;
+  padding: 12px 15px;
   border: 1px solid #474747;
   background-color: #353535;
   width: auto;
@@ -121,6 +122,25 @@ button::-moz-focus-inner {
   -ms-border-radius: 7px;
   -khtml-border-radius: 7px;
   border-radius: 7px;
+}
+.wrapper .page .messages li {
+  overflow: hidden;
+  *zoom: 1;
+  line-height: 1.5;
+}
+.wrapper .page .messages li .username {
+  margin-right: 4px;
+  display: inline;
+  float: left;
+}
+.wrapper .page .messages li .message {
+  display: inline;
+  float: left;
+}
+.wrapper .page .messages li abbr {
+  margin-left: 4px;
+  font-size: 8px;
+  color: #9b9b9b;
 }
 .wrapper .page .message_block {
   left: 0;
@@ -141,19 +161,23 @@ button::-moz-focus-inner {
   -khtml-border-radius: 7px;
   border-radius: 7px;
 }
-.wrapper .page .message_block textarea {
-  height: auto;
-  margin: 0;
-  padding: 0;
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin-right: 72px;
+.wrapper .page .message_block .username {
+  line-height: 22px;
+  padding: 0 10px;
+  margin: 4px 0;
+  border-right: 1px solid #474747;
+  display: inline;
+  float: left;
+}
+.wrapper .page .message_block .message_input {
+  overflow: hidden;
+}
+.wrapper .page .message_block .message_input #message_input {
+  width: 100%;
   background-color: transparent;
   border: 0;
+  color: white;
+  height: 30px;
   -moz-border-radius-topleft: 10px;
   -webkit-border-top-left-radius: 10px;
   -o-border-top-left-radius: 10px;

@@ -56,6 +56,7 @@ var App = Backbone.View.extend({
   el: $('#app'),
   events: {
     'click #send_message': 'sendMessage',
+    'submit form': 'sendMessage',
   },
   initialize: function(subscription) {
     this.subscription = subscription;

@@ -5,9 +5,9 @@
 {% block extra_head %}
 {% verbatim %}
 <script type="text/html" id="message_template">
-  <a class="username">{{ username }}</a>
-  <p class="message">{{ message }}</p>
-  <abbr class="timeago" title="{{ date }}">{{ date }}</abbr>
+  <a class="username">{{ username }}:</a>
+  <p class="message">{{ message }}
+  <abbr class="timeago" title="{{ date }}">{{ date }}</abbr></p>
 </script>
 {% endverbatim %}
 {% endblock %}
@@ -19,8 +19,15 @@
     </ul>
   </div>
   <div class="message_block">
-    <textarea id="message_input"></textarea>
-    <button id="send_message" type="submit">Send</button>
+    <form action="">
+      <div class="username">
+        {{ user.username }}:
+      </div>
+      <button id="send_message" type="submit">Send</button>
+      <div class="message_input">
+        <input type="text" id="message_input">
+      </div>
+    </form>
   </div>
 </div>
 {% endblock %}
