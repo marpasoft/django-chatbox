@@ -7,6 +7,7 @@
   <h1>Register</h1>
   <form action="." method="POST" class="uniForm">{% csrf_token %}
       {{ form|as_uni_form }}
+      <input type="hidden" name="next" value="{{ next }}" />
       <div class="form_block">
         <button type="submit">Register</button>
       </div>
