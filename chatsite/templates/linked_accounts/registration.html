@@ -5,7 +5,7 @@
 {% block content %}
 <div class="register_box">
   <h1>Register</h1>
-  <form action="." method="POST" class="uniForm">
+  <form action="." method="POST" class="uniForm">{% csrf_token %}
       {{ form|as_uni_form }}
       <div class="form_block">
         <button type="submit">Register</button>

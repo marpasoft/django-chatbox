@@ -122,6 +122,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_URL = '/linked_accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
