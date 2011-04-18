@@ -35,8 +35,7 @@
 </div>
 <div class="sidebar">
   {% block sidebar %}
-  <ul>
-    <li>Andrew</li>
+  <ul id="presence">
   </ul>
   {% endblock %}
 </div>
@@ -64,9 +63,6 @@ $(function() {
     conn.subscribe("main");
     conn.onSubscribed = function(channelName, subscription) {
       console.log("Subscribed to "+channelName);
-      if (channelName == "main") {
-        window.app = new App(subscription);
-      }
       subscription.onPublish = function(frame) {
         window.app.messages.create({
           message: frame.payload.message,
@@ -74,6 +70,20 @@ $(function() {
           "date": frame.payload.date
         });
       };
+      if (channelName == "main") {
+        window.app = new App(subscription);
+        $('#presence').html("<li>"+subscription.presence.join("<li></li>")+"</li>");
+        var len = subscription.history.length;
+        for (var i = 0; i<len; ++i) {
+          var item = subscription.history[i];
+          var name = item[0];
+          var frame = item[1];
+          if (name == 'PUBLISH') { subscription.onPublish(frame); }
+        }
+      }
+      subscription.onSubscribe = function(frame) {
+        $('#presence').html("<li>"+subscription.presence.join("<li></li>")+"</li>");
+      }
     }
 });
 </script>
