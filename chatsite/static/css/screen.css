@@ -59,7 +59,7 @@ html {
 body {
   height: 100%;
   font-family: Trebuchet, Tahoma, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 button {
@@ -90,8 +90,8 @@ button::-moz-focus-inner {
   *zoom: 1;
 }
 .wrapper .container h1 {
-  font-size: 15px;
-  line-height: 22px;
+  font-size: 25px;
+  line-height: 30px;
 }
 .wrapper .page {
   margin: 12px 0;
@@ -99,11 +99,12 @@ button::-moz-focus-inner {
   float: left;
 }
 .wrapper .page .messages {
-  margin-top: 40px;
-  margin-right: 212px;
-  margin-bottom: 50px;
+  margin-top: 56px;
+  margin-right: 220px;
+  margin-bottom: 70px;
   margin-left: 20px;
   padding: 12px 15px;
+  overflow: auto;
   border: 1px solid #474747;
   background-color: #353535;
   width: auto;
@@ -139,14 +140,14 @@ button::-moz-focus-inner {
 }
 .wrapper .page .messages li abbr {
   margin-left: 4px;
-  font-size: 8px;
+  font-size: 12px;
   color: #9b9b9b;
 }
 .wrapper .page .message_block {
   left: 0;
   margin-bottom: 12px;
   margin-left: 20px;
-  margin-right: 212px;
+  margin-right: 220px;
   background-color: #353535;
   border: 1px solid #474747;
   display: block;
@@ -160,9 +161,13 @@ button::-moz-focus-inner {
   -ms-border-radius: 7px;
   -khtml-border-radius: 7px;
   border-radius: 7px;
+  -moz-box-shadow: #222222 2px 2px 2px 0px inset;
+  -webkit-box-shadow: #222222 2px 2px 2px 0px inset;
+  -o-box-shadow: #222222 2px 2px 2px 0px inset;
+  box-shadow: #222222 2px 2px 2px 0px inset;
 }
 .wrapper .page .message_block .username {
-  line-height: 22px;
+  line-height: 38px;
   padding: 0 10px;
   margin: 4px 0;
   border-right: 1px solid #474747;
@@ -177,7 +182,9 @@ button::-moz-focus-inner {
   background-color: transparent;
   border: 0;
   color: white;
-  height: 30px;
+  height: 45px;
+  font-size: 18px;
+  padding-left: 10px;
   -moz-border-radius-topleft: 10px;
   -webkit-border-top-left-radius: 10px;
   -o-border-top-left-radius: 10px;
@@ -192,13 +199,13 @@ button::-moz-focus-inner {
   border-bottom-left-radius: 10px;
 }
 .wrapper .page .message_block button {
-  height: 30px;
+  height: 45px;
   line-height: 24px;
   border: 1px solid #9bdb28;
   color: white;
-  font-size: 15px;
+  font-size: 25px;
   text-transform: uppercase;
-  padding: 0 15px;
+  padding: 0 25px;
   text-shadow: #588200 1px 1px 2px;
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #d2ff00), color-stop(100%, #b2e400));
   background-image: -moz-linear-gradient(top, #d2ff00 0%, #b2e400 100%);

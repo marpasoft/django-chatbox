@@ -21,7 +21,7 @@ html
 body
   height: 100%
   font-family: Trebuchet, Tahoma, Arial, sans-serif
-  font-size: 12px
+  font-size: 18px
 
 button                                                                                              
   background-color: transparent
@@ -46,19 +46,20 @@ button::-moz-focus-inner
     +clearfix
 
     h1
-      font-size: 15px
-      line-height: 22px
+      font-size: 25px
+      line-height: 30px
 
   .page
     margin: 12px 0
     +float-left
 
     .messages
-      margin-top: 40px
-      margin-right: 212px
-      margin-bottom: 50px
+      margin-top: 56px
+      margin-right: 220px
+      margin-bottom: 70px
       margin-left: 20px
       padding: 12px 15px
+      overflow: auto
       border: 1px solid $content_border
       background-color: $content_bg
       width: auto 
@@ -76,18 +77,19 @@ button::-moz-focus-inner
           +float-left
         abbr
           margin-left: 4px
-          font-size: 8px
+          font-size: 12px
           color: $time
 
     .message_block
       left: 0
       margin-bottom: 12px
       margin-left: 20px
-      margin-right: 212px
+      margin-right: 220px
       +content-block
+      +box-shadow(#222, 2px, 2px, 2px, 0px, inset)
 
       .username
-        line-height: 22px
+        line-height: 38px
         padding: 0 10px
         margin: 4px 0
         border-right: 1px solid $content_border
@@ -100,17 +102,19 @@ button::-moz-focus-inner
           background-color: transparent
           border: 0
           color: white
-          height: 30px
+          height: 45px
+          font-size: 18px
+          padding-left: 10px
           +border-left-radius(10px)
 
       button
-        height: 30px
+        height: 45px
         line-height: 24px
         border: 1px solid $button_border
         color: white 
-        font-size: 15px
+        font-size: 25px
         text-transform: uppercase
-        padding: 0 15px
+        padding: 0 25px
         +text-shadow($button_shadow, 1px, 1px, 2px)
         +linear-gradient(color-stops($button_top, $button_bottom))
         +float-right
