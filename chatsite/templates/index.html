@@ -1,27 +1,50 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Chatbox</title>
-  </head>
-  <body>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://{{ HOOKBOX_HOST }}:{{ HOOKBOX_PORT }}/static/hookbox.js"></script>
-    <script type="text/javascript">
-    $(function() {
-        var conn = hookbox.connect('http://{{ HOOKBOX_HOST }}:{{ HOOKBOX_PORT }}/');
-        conn.onOpen = function() { 
-          console.log("connection established!");
-        };
-        conn.onError = function(err) {
-          console.log("connection failed: " + err.msg);
-        };
-        conn.onSubscribed = function(channel_name, subscription) {
-          subscription.onPublish = function(frame) {
-            console.log(frame);
-          };
-        };
-        conn.subscribe('testing');
-    });
-    </script>
-  </body>
-</html>
+{% extends "base.html" %}
+
+{% load verbatim %}
+
+{% block extra_head %}
+{% verbatim %}
+<script type="text/html" id="message_template">
+  <a class="username">{{ username }}</a>
+  <p class="message">{{ message }}</p>
+  <abbr class="timeago" title="{{ date }}">{{ date }}</abbr>
+</script>
+{% endverbatim %}
+{% endblock %}
+
+{% block content %}
+<div id="app">
+  <div class="messages">
+    <ul id="messages">
+    </ul>
+  </div>
+  <div class="message_block">
+    <textarea id="message_input"></textarea>
+    <button id="send_message" type="submit">Send</button>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script type="text/javascript">
+  var chatbox = {};
+  chatbox.hookbox_host = "{{ HOOKBOX_HOST }}";
+  chatbox.hookbox_port = "{{ HOOKBOX_PORT }}";
+  chatbox.user = "{{ user.username }}";
+  chatbox.messages_api = "";
+</script>
+<script src="{{ STATIC_URL }}js/chatbox.js?v=1.0" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+    $("abbr.timeago").timeago();
+    var conn = create_connection(chatbox);
+    conn.subscribe("main");
+    conn.onSubscribed = function(channelName, subscription) {
+       console.log("Subscribed to "+channelName);
+       if (channelName == "main") {
+         window.app = new App(subscription);
+       }
+    }
+});
+</script>
+{% endblock %}
