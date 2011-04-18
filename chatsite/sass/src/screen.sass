@@ -1,0 +1,108 @@
+@import compass/reset
+@import compass/css3
+@import compass/helpers
+@import compass/utilities
+
+$bottom_grad: #3f3f3f
+$top_grad: #1f1f1f
+$content_bg: #353535
+$content_border: #474747
+$button_border: #9bdb28
+$button_top: #d2ff00
+$button_bottom: #b2e400
+$button_shadow: #588200
+
+@import mixins
+
+html
+  height: 100%
+
+body
+  height: 100%
+  font-family: Trebuchet, Tahoma, Arial, sans-serif
+  font-size: 12px
+
+button                                                                                              
+  background-color: transparent
+  overflow: visible
+  border: none
+  cursor: pointer
+  margin: 0
+  padding: 0
+
+button::-moz-focus-inner
+  padding: 0
+  border: none
+
+.wrapper
+  color: white
+  height: 100%
+  +linear-gradient(color-stops($top_grad, $bottom_grad))
+
+  .container
+    padding: 0 16px 0 20px
+    height: 100%
+    +clearfix
+
+    h1
+      font-size: 15px
+      line-height: 22px
+
+  .page
+    margin: 12px 0
+    +float-left
+
+    .messages
+      margin-top: 40px
+      margin-right: 212px
+      margin-bottom: 50px
+      margin-left: 20px
+      border: 1px solid $content_border
+      background-color: $content_bg
+      width: auto 
+      top: 0
+      left: 0
+      +content-block
+
+    .message_block
+      left: 0
+      margin-bottom: 12px
+      margin-left: 20px
+      margin-right: 212px
+      +content-block
+
+      textarea
+        height: auto 
+        margin: 0
+        padding: 0
+        display: block
+        position: absolute
+        top: 0
+        bottom: 0
+        right: 0
+        left: 0
+        margin-right: 72px
+        background-color: transparent
+        border: 0
+        +border-left-radius(10px)
+
+      button
+        height: 30px
+        line-height: 24px
+        border: 1px solid $button_border
+        color: white 
+        font-size: 15px
+        text-transform: uppercase
+        padding: 0 15px
+        +text-shadow($button_shadow, 1px, 1px, 2px)
+        +linear-gradient(color-stops($button_top, $button_bottom))
+        +float-right
+        +border-radius(7px)
+
+  .sidebar
+    margin: 12px 16px 12px 0
+    width: 185px
+    top: 0
+    +content-block
+    ul
+      padding: 10px 20px
