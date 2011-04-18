@@ -11,7 +11,10 @@ $button_border: #9bdb28
 $button_top: #d2ff00
 $button_bottom: #b2e400
 $button_shadow: #588200
-$time: #9b9b9b
+$secondary: #9b9b9b
+
+$form_button_top: #5c5c5c
+$form_button_bottom: #424242
 
 @import mixins
 
@@ -41,13 +44,13 @@ button::-moz-focus-inner
   +linear-gradient(color-stops($top_grad, $bottom_grad))
 
   .container
-    padding: 0 16px 0 20px
     height: 100%
     +clearfix
 
     h1
       font-size: 25px
       line-height: 30px
+      margin-left: 20px
 
   .page
     margin: 12px 0
@@ -78,7 +81,7 @@ button::-moz-focus-inner
         abbr
           margin-left: 4px
           font-size: 12px
-          color: $time
+          color: $secondary
 
     .message_block
       left: 0
@@ -127,3 +130,68 @@ button::-moz-focus-inner
     +content-block
     ul
       padding: 10px 20px
+
+.login_box
+  width: 310px
+  margin: 100px auto
+  +clearfix
+  a
+    display: block
+    background-repeat: no-repeat
+    text-indent: -9999px
+    width: 150px
+    height: 22px
+    +float-left
+    &:hover
+      background-position: 0 -24px
+    &:active
+      background-position: 0 -48px
+  .twitter_signin
+    background-image: url(../img/signin_twitter.png)
+    margin-right: 10px
+  .facebook_signin
+    background-image: url(../img/signin_facebook.png)
+
+.container
+  .register_box
+    width: 400px
+    margin: 100px auto
+    h1
+      margin: 0
+      text-align: center
+      margin-bottom: 10px
+
+  .uniForm
+    .formHint
+      font-size: 10px
+      color: $secondary
+      text-align: right
+      clear: both
+      padding-top: 6px
+
+    .ctrlHolder
+      margin-bottom: 12px
+      +clearfix
+      label
+        width: 120px
+        +float-left
+        line-height: 24px
+      input
+        width: 274px
+        margin: 0
+        +float-left
+        border: 1px solid $content_border
+        background-color: $content_bg
+        line-height: 22px
+        +border-radius(4px)
+
+    .form_block
+      button
+        font-size: 18px
+        color: white
+        height: 35px
+        line-height: 35px
+        padding: 0 25px
+        +linear-gradient(color-stops($form_button_top, $form_button_bottom))
+        +border-radius(8px)
+        +float-right

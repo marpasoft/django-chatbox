@@ -12,16 +12,11 @@ function ISODateString(d) {
 
 function create_connection(chatbox) {
   var conn = hookbox.connect('http://'+chatbox.hookbox_host+':'+chatbox.hookbox_port+'/');
-  conn.onOpen = function() { 
+  conn.onOpen = function() {
     console.log("connection established!");
   };
   conn.onError = function(err) {
     console.log("connection failed: " + err.msg);
-  };
-  conn.onSubscribed = function(channel_name, subscription) {
-    subscription.onPublish = function(frame) {
-      console.log(frame);
-    };
   };
   return conn;
 }
@@ -78,12 +73,12 @@ var App = Backbone.View.extend({
     console.log("SendMessage");
     var message = this.$('#message_input').val();
     if (message) {
-      this.subscription.publish(message);
-      var new_date = new Date();
-      this.messages.create({
-        message: message,
-        username: chatbox.user,
-        "date": ISODateString(new_date)
+      var new_date = ISODateString(new Date());
+
+      this.subscription.publish({
+          "message": message,
+          "date": new_date,
+          "username": chatbox.user
       });
       this.$('#message_input').val('');
     }

@@ -84,7 +84,6 @@ button::-moz-focus-inner {
   background-image: linear-gradient(top, #1f1f1f 0%, #3f3f3f 100%);
 }
 .wrapper .container {
-  padding: 0 16px 0 20px;
   height: 100%;
   overflow: hidden;
   *zoom: 1;
@@ -92,6 +91,7 @@ button::-moz-focus-inner {
 .wrapper .container h1 {
   font-size: 25px;
   line-height: 30px;
+  margin-left: 20px;
 }
 .wrapper .page {
   margin: 12px 0;
@@ -239,4 +239,94 @@ button::-moz-focus-inner {
 }
 .wrapper .sidebar ul {
   padding: 10px 20px;
+}
+
+.login_box {
+  width: 310px;
+  margin: 100px auto;
+  overflow: hidden;
+  *zoom: 1;
+}
+.login_box a {
+  display: block;
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+  width: 150px;
+  height: 22px;
+  display: inline;
+  float: left;
+}
+.login_box a:hover {
+  background-position: 0 -24px;
+}
+.login_box a:active {
+  background-position: 0 -48px;
+}
+.login_box .twitter_signin {
+  background-image: url(../img/signin_twitter.png);
+  margin-right: 10px;
+}
+.login_box .facebook_signin {
+  background-image: url(../img/signin_facebook.png);
+}
+
+.container .register_box {
+  width: 400px;
+  margin: 100px auto;
+}
+.container .register_box h1 {
+  margin: 0;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.container .uniForm .formHint {
+  font-size: 10px;
+  color: #9b9b9b;
+  text-align: right;
+  clear: both;
+  padding-top: 6px;
+}
+.container .uniForm .ctrlHolder {
+  margin-bottom: 12px;
+  overflow: hidden;
+  *zoom: 1;
+}
+.container .uniForm .ctrlHolder label {
+  width: 120px;
+  display: inline;
+  float: left;
+  line-height: 24px;
+}
+.container .uniForm .ctrlHolder input {
+  width: 274px;
+  margin: 0;
+  display: inline;
+  float: left;
+  border: 1px solid #474747;
+  background-color: #353535;
+  line-height: 22px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+}
+.container .uniForm .form_block button {
+  font-size: 18px;
+  color: white;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 25px;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #5c5c5c), color-stop(100%, #424242));
+  background-image: -moz-linear-gradient(top, #5c5c5c 0%, #424242 100%);
+  background-image: linear-gradient(top, #5c5c5c 0%, #424242 100%);
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+  display: inline;
+  float: right;
 }

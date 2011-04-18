@@ -116,6 +116,13 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates')
 )
 
+AUTHENTICATION_BACKENDS = (
+    'linked_accounts.backends.LinkedAccountsBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGIN_URL = '/linked_accounts/login/'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,6 +131,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+
+    'uni_form',
+    'oauth_access',
+    'linked_accounts',
+
     'chatbox',
 )
 

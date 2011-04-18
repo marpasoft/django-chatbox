@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     url(r'^$', login_required(TemplateView.as_view(template_name="index.html")), name="root_url"),
     url(r'^hookbox/', include('chatbox.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^oauth/', include('oauth_access.urls')),
+    url(r'^linked_accounts/', include('linked_accounts.urls')),
 )
 
 if settings.DEBUG:
