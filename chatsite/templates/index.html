@@ -88,12 +88,18 @@ $(function() {
         }
       }
       subscription.onSubscribe = function(frame) {
-        window.app.presence.addOne(new User({'name': frame.user}));
+        // Avoid duplications
+        window.app.presence.removeByName(frame.user);
+        window.app.presence.users.add(new User({'name': frame.user}));
       };
       subscription.onUnsubscribe = function(frame) {
         window.app.presence.removeByName(frame.user);
       };
-    }
+      var intervalID = setInterval(function() {
+        console.log('Refresh');
+        window.app.presence.refresh(subscription.presence);
+      }, 20000);
+    };
 });
 </script>
 {% endblock %}

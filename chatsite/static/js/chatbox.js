@@ -55,18 +55,8 @@ var UserView = Backbone.View.extend({
 var UserListView = Backbone.View.extend({
   el: $('#presence'),
   initialize: function(presence_list) {
-    _.bindAll(this, 'addOne', 'removeOne', 'removeByName', 'addAll', 'render');
-    this.users = new UserList();
-    this.users.bind('add', this.addOne);
-    this.users.bind('remove', this.removeOne);
-    this.users.bind('refresh', this.addAll);
-    this.users.bind('all', this.render);
-    this.users.fetch();
-    var n = presence_list.length;
-    for (var i=0; i<n; i++) {
-      var user = new User({'name': presence_list[i]});
-      this.users.add(user);
-    }
+    _.bindAll(this, 'addOne', 'removeOne', 'removeByName', 'addAll', 'render', 'removeAll', 'refresh');
+    this.refresh(presence_list);
   },
   addAll: function() {
     this.users.each(this.addOne);
@@ -77,13 +67,33 @@ var UserListView = Backbone.View.extend({
   },
   removeOne: function(model) {
     $(this.el).find('#user_'+model.cid).parent().remove();
-    this.users.remove(model);
+  },
+  refresh: function(presence_list) {
+    if (this.users !== undefined) {
+      this.removeAll();
+    }
+    this.users = new UserList();
+    this.users.bind('add', this.addOne);
+    this.users.bind('remove', this.removeOne);
+    this.users.bind('refresh', this.addAll);
+    this.users.bind('all', this.render);
+    this.users.fetch();
+    $this = this;
+    _(presence_list).each(function(item) {
+      var user = new User({'name': item});
+      $this.users.add(user);
+    });
+  },
+  removeAll: function() {
+    this.users.each(this.removeOne);
   },
   removeByName: function(username) {
     var model = this.users.select(function(md) {
-        return md.get('name') == username;
+        return md.get('name') === username;
     })[0];
-    this.removeOne(model);
+    if (model !== undefined) {
+        this.users.remove(model);
+    }
   }
 });
 
@@ -123,7 +133,6 @@ var App = Backbone.View.extend({
     this.$('#messages').append(view.render().el);
   },
   sendMessage: function() {
-    console.log("SendMessage");
     var message = this.$('#message_input').val();
     if (message) {
       var new_date = ISODateString(new Date());
