@@ -17,23 +17,24 @@
 
 {% block content %}
 <div class="page">
+  <a class="button" href="{% url auth_logout %}">Logout</a>
   <h1>Chatbox</h1>
-  <div id="app">
-    <div class="messages">
-      <ul id="messages">
-      </ul>
-    </div>
-    <div class="message_block">
-      <form action=".">
-        <div class="username">
-          {{ user.username }}:
-        </div>
-        <button id="send_message" type="submit">Send</button>
-        <div class="message_input">
-          <input type="text" id="message_input">
-        </div>
-      </form>
-    </div>
+</div>
+<div id="app">
+  <div class="messages">
+    <ul id="messages">
+    </ul>
+  </div>
+  <div class="message_block">
+    <form action=".">
+      <div class="username">
+        {{ user.username }}:
+      </div>
+      <button id="send_message" type="submit">Send</button>
+      <div class="message_input">
+        <input type="text" id="message_input">
+      </div>
+    </form>
   </div>
 </div>
 <div class="sidebar">

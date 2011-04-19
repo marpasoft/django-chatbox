@@ -95,10 +95,36 @@ button::-moz-focus-inner {
 }
 .wrapper .page {
   margin: 12px 0;
+  position: absolute;
+  width: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-right: 220px;
+  margin-left: 20px;
   display: inline;
   float: left;
 }
-.wrapper .page .messages {
+.wrapper .page .button {
+  height: 35px;
+  line-height: 35px;
+  padding: 0 25px;
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  display: inline;
+  float: right;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(0%, #5c5c5c), color-stop(100%, #424242));
+  background-image: -moz-linear-gradient(top, #5c5c5c 0%, #424242 100%);
+  background-image: linear-gradient(top, #5c5c5c 0%, #424242 100%);
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+}
+.wrapper .messages {
   margin-top: 56px;
   margin-right: 220px;
   margin-bottom: 70px;
@@ -124,26 +150,26 @@ button::-moz-focus-inner {
   -khtml-border-radius: 7px;
   border-radius: 7px;
 }
-.wrapper .page .messages li {
+.wrapper .messages li {
   overflow: hidden;
   *zoom: 1;
   line-height: 1.5;
 }
-.wrapper .page .messages li .username {
+.wrapper .messages li .username {
   margin-right: 4px;
   display: inline;
   float: left;
 }
-.wrapper .page .messages li .message {
+.wrapper .messages li .message {
   display: inline;
   float: left;
 }
-.wrapper .page .messages li abbr {
+.wrapper .messages li abbr {
   margin-left: 4px;
   font-size: 12px;
   color: #9b9b9b;
 }
-.wrapper .page .message_block {
+.wrapper .message_block {
   left: 0;
   margin-bottom: 12px;
   margin-left: 20px;
@@ -166,7 +192,7 @@ button::-moz-focus-inner {
   -o-box-shadow: #222222 2px 2px 2px 0px inset;
   box-shadow: #222222 2px 2px 2px 0px inset;
 }
-.wrapper .page .message_block .username {
+.wrapper .message_block .username {
   line-height: 38px;
   padding: 0 10px;
   margin: 4px 0;
@@ -174,10 +200,10 @@ button::-moz-focus-inner {
   display: inline;
   float: left;
 }
-.wrapper .page .message_block .message_input {
+.wrapper .message_block .message_input {
   overflow: hidden;
 }
-.wrapper .page .message_block .message_input #message_input {
+.wrapper .message_block .message_input #message_input {
   width: 100%;
   background-color: transparent;
   border: 0;
@@ -198,7 +224,7 @@ button::-moz-focus-inner {
   -khtml-border-bottom-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-.wrapper .page .message_block button {
+.wrapper .message_block button {
   height: 45px;
   line-height: 24px;
   border: 1px solid #9bdb28;
