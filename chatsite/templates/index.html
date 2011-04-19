@@ -9,6 +9,9 @@
   <p class="message">{{ message }}
   <abbr class="timeago" title="{{ date }}">{{ date }}</abbr></p>
 </script>
+<script type="text/html" id="user_template">
+  <span id="user_{{ cid }}">{{ name }}</span>
+</script>
 {% endverbatim %}
 {% endblock %}
 
@@ -63,6 +66,10 @@ $(function() {
     conn.subscribe("main");
     conn.onSubscribed = function(channelName, subscription) {
       console.log("Subscribed to "+channelName);
+      $(window).unload(function() {
+          subscription.cancel();
+          conn.disconnect();
+      });
       subscription.onPublish = function(frame) {
         window.app.messages.create({
           message: frame.payload.message,
@@ -72,7 +79,6 @@ $(function() {
       };
       if (channelName == "main") {
         window.app = new App(subscription);
-        $('#presence').html("<li>"+subscription.presence.join("<li></li>")+"</li>");
         var len = subscription.history.length;
         for (var i = 0; i<len; ++i) {
           var item = subscription.history[i];
@@ -82,8 +88,11 @@ $(function() {
         }
       }
       subscription.onSubscribe = function(frame) {
-        $('#presence').html("<li>"+subscription.presence.join("<li></li>")+"</li>");
-      }
+        window.app.presence.addOne(new User({'name': frame.user}));
+      };
+      subscription.onUnsubscribe = function(frame) {
+        window.app.presence.removeByName(frame.user);
+      };
     }
 });
 </script>

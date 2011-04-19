@@ -21,7 +21,6 @@ function create_connection(chatbox) {
   return conn;
 }
 
-
 var ChatMessage = Backbone.Model.extend({
   url: function() {
     return this.get('resource_uri') || this.collection.url;
@@ -34,6 +33,58 @@ var ChatMessages = Backbone.Collection.extend({
     return data.objects;
   },
   localStorage: new Store("ChatMessages")
+});
+
+var User = Backbone.Model.extend({
+});
+
+var UserList = Backbone.Collection.extend({
+  localStorage: new Store("UserList")
+});
+
+var UserView = Backbone.View.extend({
+    tagName: 'li',
+    render: function() {
+      var data = this.model.toJSON();
+      data['cid'] = this.model.cid;
+      $(this.el).html(ich.user_template(data));
+      return this;
+    }
+});
+
+var UserListView = Backbone.View.extend({
+  el: $('#presence'),
+  initialize: function(presence_list) {
+    _.bindAll(this, 'addOne', 'removeOne', 'removeByName', 'addAll', 'render');
+    this.users = new UserList();
+    this.users.bind('add', this.addOne);
+    this.users.bind('remove', this.removeOne);
+    this.users.bind('refresh', this.addAll);
+    this.users.bind('all', this.render);
+    this.users.fetch();
+    var n = presence_list.length;
+    for (var i=0; i<n; i++) {
+      var user = new User({'name': presence_list[i]});
+      this.users.add(user);
+    }
+  },
+  addAll: function() {
+    this.users.each(this.addOne);
+  },
+  addOne: function(user) {
+    var view = new UserView({model: user});
+    $(this.el).append(view.render().el);
+  },
+  removeOne: function(model) {
+    $(this.el).find('#user_'+model.cid).parent().remove();
+    this.users.remove(model);
+  },
+  removeByName: function(username) {
+    var model = this.users.select(function(md) {
+        return md.get('name') == username;
+    })[0];
+    this.removeOne(model);
+  }
 });
 
 var ChatMessageView = Backbone.View.extend({
@@ -55,6 +106,8 @@ var App = Backbone.View.extend({
   },
   initialize: function(subscription) {
     this.subscription = subscription;
+    var presence_list = subscription.presence;
+    this.presence = new UserListView(presence_list);
     _.bindAll(this, 'addOne', 'addAll', 'render');
     this.messages = new ChatMessages();
     this.messages.bind('add', this.addOne);
