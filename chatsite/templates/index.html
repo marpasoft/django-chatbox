@@ -65,7 +65,6 @@ $(function() {
     var conn = create_connection(chatbox);
     conn.subscribe("main");
     conn.onSubscribed = function(channelName, subscription) {
-      console.log("Subscribed to "+channelName);
       $(window).unload(function() {
           subscription.cancel();
           conn.disconnect();
@@ -96,7 +95,6 @@ $(function() {
         window.app.presence.removeByName(frame.user);
       };
       var intervalID = setInterval(function() {
-        console.log('Refresh');
         window.app.presence.refresh(subscription.presence);
       }, 20000);
     };

@@ -12,12 +12,6 @@ function ISODateString(d) {
 
 function create_connection(chatbox) {
   var conn = hookbox.connect('http://'+chatbox.hookbox_host+':'+chatbox.hookbox_port+'/');
-  conn.onOpen = function() {
-    console.log("connection established!");
-  };
-  conn.onError = function(err) {
-    console.log("connection failed: " + err.msg);
-  };
   return conn;
 }
 
