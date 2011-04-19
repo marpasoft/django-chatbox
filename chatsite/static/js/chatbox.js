@@ -133,8 +133,7 @@ var App = Backbone.View.extend({
 
       this.subscription.publish({
           "message": message,
-          "date": new_date,
-          "username": chatbox.user
+          "date": new_date
       });
       this.$('#message_input').val('');
     }
