@@ -1,7 +1,11 @@
 import logging
+import iso8601
+
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import simplejson as json
+
+from chatbox.models import ChatMessage
 
 
 def render_json(obj):
@@ -26,7 +30,7 @@ def create_channel(request):
     action = request.POST['action']
     channel_name = request.POST['channel_name']
     options = {
-        "history_size": 20,
+        "history_size": 0,
         "reflective": True,
         "presenceful": True,
     }
@@ -50,6 +54,15 @@ def publish(request):
     action = request.POST['action']
     channel_name = request.POST['channel_name']
     payload = request.POST['payload']
+
+    data = json.loads(payload)
+    user = request.user
+
+    ChatMessage.objects.create(
+        channel=channel_name,
+        message=data['message'],
+        user=user,
+        created=iso8601.parse_date(data['date']))
 
     options = {}
     result = [True, options]
