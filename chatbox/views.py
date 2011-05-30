@@ -62,7 +62,7 @@ def publish(request):
         channel=channel_name,
         message=data['message'],
         user=user,
-        created=iso8601.parse_date(data['date']))
+        created=iso8601.parse_date(data['date']).replace(tzinfo=None))
 
     options = {}
     result = [True, options]
